@@ -141,7 +141,7 @@ prices_and_trends = pd.merge(left=prices, right=trends, left_on='Date', right_on
 # and Weekly Mentions (every day has the weekly mentions for its respective week) 
 
 
-# In[19]:
+# In[5]:
 
 
 # reading in the indicators csv to create a new df
@@ -176,7 +176,7 @@ for indi in indicators_to_shift:
 # and Weekly Mentions (every day has the weekly mentions for its respective week), Volume, PB, PS, and MOA
 
 
-# In[21]:
+# In[11]:
 
 
 # write the prices_trends_and_indicators dataframe to a csv file, just in case for future reference
@@ -186,31 +186,33 @@ prices_trends_and_indicators.head()
 print(len(prices_trends_and_indicators))
 
 
-# In[22]:
+# In[12]:
 
 
 # create the randomization of months (numbered 1-24) for the training and test set
 
 order_arr = []
-while len(order_arr) < 24:
-  n = random.randint(1,24)
+while len(order_arr) < 17:
+  n = random.randint(1,17)
   if n not in order_arr:
     order_arr.append(n)
 
 # split the randomly ordered array of month numbers into the training and test sets
 # the training set takes 16 months of the data and the test set takes 8 months of the data
-training_set = order_arr[0:16]
-test_set = order_arr[16:]
+training_set = order_arr[0:11]
+test_set = order_arr[11:]
+print(training_set)
+print(test_set)
 
 
-# In[23]:
+# In[13]:
 
 
 # statistcal details of the dataset
 prices_trends_and_indicators.describe()
 
 
-# In[24]:
+# In[14]:
 
 
 shifted_df = prices_trends_and_indicators[['price change','ShiftedWeekly Mentions', 'ShiftedVolume', 'ShiftedPB', 'ShiftedPS', 'ShiftedMOA']].copy()
@@ -219,7 +221,7 @@ print(len(shifted_df.dropna()))
 print(remove_na_shifted.head())
 
 
-# In[25]:
+# In[33]:
 
 
 # carry out multivariate linear regression for training and predictive purposes
@@ -228,10 +230,81 @@ print(remove_na_shifted.head())
 X = remove_na_shifted[['ShiftedWeekly Mentions', 'ShiftedVolume', 'ShiftedPB', 'ShiftedPS', 'ShiftedMOA']]
 y = remove_na_shifted['price change']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
-print(len(X_train))
-X_train.fillna(X_train.mean(), inplace=True)
-print(X_train)
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
+# carry out multivariate linear regression for training and predictive purposes
+
+# separate the independent variables (in X) and dependent variable (in y)
+# X = prices_trends_and_indicators[['Weekly Mentions', 'Volume', 'PB', 'PS', 'MOA']]
+# y = prices_trends_and_indicators['Close']
+
+x1 = X[0:30]
+x2 = X[30:60]
+x3 = X[60:90]
+x4 = X[90:120]
+x5 = X[120:150]
+x6 = X[150:180]
+x7 = X[180:210]
+x8 = X[210:240]
+x9 = X[240:270]
+x10 = X[270:300]
+x11 = X[300:330]
+x12 = X[330:360]
+x13 = X[360:390]
+x14 = X[390:420]
+x15 = X[420:450]
+x16 = X[450:480]
+x17 = X[480:499]
+
+y1 = y[0:30]
+y2 = y[30:60]
+y3 = y[60:90]
+y4 = y[90:120]
+y5 = y[120:150]
+y6 = y[150:180]
+y7 = y[180:210]
+y8 = y[210:240]
+y9 = y[240:270]
+y10 = y[270:300]
+y11 = y[300:330]
+y12 = y[330:360]
+y13 = y[360:390]
+y14 = y[390:420]
+y15 = y[420:450]
+y16 = y[450:480]
+y17 = y[480:499]
+
+dx={1:x1, 2:x2, 3:x3, 4:x4, 5:x5, 6:x6, 7:x7, 8:x8, 9:x9, 10:x10, 11:x11, 12:x12, 13:x13, 14:x14, 15:x15, 16:x16, 17:x17}
+pd.concat(dx)
+
+dy={1:y1, 2:y2, 3:y3, 4:y4, 5:y5, 6:y6, 7:y7, 8:y8, 9:y9, 10:y10, 11:y11, 12:y12, 13:y13, 14:y14, 15:y15, 16:y16, 17:y17}
+pd.concat(dy)
+X_train = pd.DataFrame()
+y_train = pd.DataFrame()
+X_test = pd.DataFrame()
+y_test = pd.DataFrame()
+for i in training_set:
+    x_train_temp = dx[i]
+    y_train_temp = dy[i]
+    X_train = pd.concat([X_train, x_train_temp], ignore_index=False)
+    y_train = pd.concat([y_train, y_train_temp], ignore_index=False)
+    
+    
+for j in test_set:
+    x_test_temp = dx[j]
+    y_test_temp = dy[j]
+    X_test = pd.concat([X_test, x_test_temp], ignore_index=False)
+    y_test = pd.concat([y_test, y_test_temp], ignore_index=False)
+
+
+# regressor = LinearRegression()  
+# regressor.fit(X_train, y_train)
+
+# # to check the coefficients and intercept used for the independent variables
+# print("Coefficients: \n", regressor.coef_)
+# print("Intercept: \n", regressor.intercept_)
+# print(len(X_train))
+# X_train.fillna(X_train.mean(), inplace=True)
+# print(X_train)
 
 # for item in X_train['ShiftedVolume']:
 #     if item==np.nan:
@@ -244,17 +317,19 @@ print("Coefficients: \n", regressor.coef_)
 print("Intercept: \n", regressor.intercept_)
 
 
-# In[26]:
+# In[34]:
 
 
 y_pred = regressor.predict(X_test)
+y_new_test = y_test.to_numpy()
 
 # check actual vs. predicted values
-act_vs_pred = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
-act_vs_pred.head()
+
+# act_vs_pred = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+# act_vs_pred.head()
 
 
-# In[27]:
+# In[35]:
 
 
 print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))  
@@ -262,7 +337,7 @@ print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
 print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 
 
-# In[28]:
+# In[36]:
 
 
 # get a summary with statsmodels
