@@ -1,0 +1,30 @@
+Mean Absolute Error: 0.014087081438137064
+Mean Squared Error: 0.000334708246792549
+Root Mean Squared Error: 0.01829503339140295
+Model Summary:                             OLS Regression Results                            
+==============================================================================
+Dep. Variable:           price change   R-squared:                       0.001
+Model:                            OLS   Adj. R-squared:                 -0.003
+Method:                 Least Squares   F-statistic:                    0.2062
+Date:                Sun, 26 Apr 2020   Prob (F-statistic):              0.814
+Time:                        13:37:55   Log-Likelihood:                 1185.2
+No. Observations:                 498   AIC:                            -2364.
+Df Residuals:                     495   BIC:                            -2352.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0029      0.008     -0.360      0.719      -0.018       0.013
+ShiftedPB   6.807e-05      0.001      0.063      0.949      -0.002       0.002
+ShiftedPS      0.0001      0.004      0.030      0.976      -0.008       0.008
+==============================================================================
+Omnibus:                       23.352   Durbin-Watson:                   2.130
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               65.972
+Skew:                          -0.024   Prob(JB):                     4.72e-15
+Kurtosis:                       4.782   Cond. No.                         265.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+

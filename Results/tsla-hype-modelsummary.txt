@@ -1,0 +1,33 @@
+Mean Absolute Error: 0.016439790948046665
+Mean Squared Error: 0.0005425959237408371
+Root Mean Squared Error: 0.02329368849583159
+Model Summary:                             OLS Regression Results                            
+==============================================================================
+Dep. Variable:           price change   R-squared:                       0.046
+Model:                            OLS   Adj. R-squared:                  0.040
+Method:                 Least Squares   F-statistic:                     7.748
+Date:                Sun, 26 Apr 2020   Prob (F-statistic):           4.60e-05
+Time:                        13:45:36   Log-Likelihood:                 1097.7
+No. Observations:                 488   AIC:                            -2187.
+Df Residuals:                     484   BIC:                            -2171.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+const                      0.0014      0.002      0.551      0.582      -0.004       0.006
+ShiftedWeekly Mentions -6.334e-05   6.64e-05     -0.954      0.340      -0.000    6.71e-05
+ShiftedVolume            6.13e-11   2.65e-10      0.232      0.817   -4.59e-10    5.82e-10
+ShiftedMOA                 0.0002   3.58e-05      4.684      0.000    9.73e-05       0.000
+==============================================================================
+Omnibus:                       68.108   Durbin-Watson:                   2.021
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              198.063
+Skew:                           0.661   Prob(JB):                     9.80e-44
+Kurtosis:                       5.828   Cond. No.                     2.18e+07
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.18e+07. This might indicate that there are
+strong multicollinearity or other numerical problems.
+

@@ -1,0 +1,35 @@
+Mean Absolute Error: 0.019088089596020378
+Mean Squared Error: 0.0006008365460939914
+Root Mean Squared Error: 0.02451196740561621
+Model Summary:                             OLS Regression Results                            
+==============================================================================
+Dep. Variable:           price change   R-squared:                       0.082
+Model:                            OLS   Adj. R-squared:                  0.072
+Method:                 Least Squares   F-statistic:                     8.601
+Date:                Sun, 26 Apr 2020   Prob (F-statistic):           8.08e-08
+Time:                        13:40:23   Log-Likelihood:                 1064.0
+No. Observations:                 488   AIC:                            -2116.
+Df Residuals:                     482   BIC:                            -2091.
+Df Model:                           5                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+const                      0.0047      0.005      0.937      0.349      -0.005       0.015
+ShiftedWeekly Mentions  -8.23e-05   7.45e-05     -1.105      0.270      -0.000     6.4e-05
+ShiftedVolume           1.621e-10   7.38e-11      2.197      0.029    1.71e-11    3.07e-10
+ShiftedPB                 -0.0010      0.001     -1.471      0.142      -0.002       0.000
+ShiftedPS               5.994e-06      0.000      0.021      0.983      -0.001       0.001
+ShiftedMOA                 0.0046      0.001      5.656      0.000       0.003       0.006
+==============================================================================
+Omnibus:                       90.848   Durbin-Watson:                   2.182
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              365.060
+Skew:                           0.775   Prob(JB):                     5.35e-80
+Kurtosis:                       6.943   Cond. No.                     1.33e+08
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.33e+08. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
